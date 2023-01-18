@@ -1,0 +1,70 @@
+<head>
+  <title>YABU</title>
+</head>
+
+<body>
+  <div class="align">
+    <input type="text" id="text" placeholder="Type a URL" />
+  </div>
+  <script>
+    window.onscroll = function() {
+      window.scrollLeft = 0;
+    }
+    let html = {
+      input: document.getElementById('text'),
+      button: document.getElementById('button'),
+    }
+
+    function o(i) {
+      let win = window.open();
+      let iframe = win.document.createElement('iframe');
+      iframe.style.width = '100vw';
+      iframe.style.height = '100vh';
+      iframe.style.border = 'none';
+      iframe.src = i;
+      win.document.body.appendChild(iframe);
+    }
+
+    document.addEventListener("keyup", function(event) {
+      if (event.keyCode === 13) {
+        if (html.input.value.includes('.') && html.input.value.startsWith("https://")) {
+          o(html.input.value)
+        } else if (!html.input.value.includes('.')) {
+          o("https://bing.com/search?q=" + html.input.value)
+        } else {
+          o("https://" + html.input.value)
+        }
+      }
+    })
+
+  </script>
+  <style>
+    html,
+    body,
+    * {
+      background: #252526;
+      font-family: sans-serif;
+    }
+
+    #text {
+      position: relative;
+      top: -5px;
+      width: 99vw;
+      padding-left: 3px !important;
+      padding-bottom: 3px;
+      padding-top: 3px;
+      background: #3e3e42;
+      border: none;
+      outline: none;
+      border-radius: 15px;
+      color: white;
+    }
+
+    .align {
+      width: 100%;
+      align-content: center;
+      margin: auto;
+    }
+
+  </style>
+</body>
